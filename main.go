@@ -1,18 +1,17 @@
 package main
 
 import (
-	"user/handler"
-	pb "user/proto"
-
-	"github.com/micro/micro/v3/service"
-	"github.com/micro/micro/v3/service/logger"
+	"github.com/asim/go-micro/v3"
+	"github.com/asim/go-micro/v3/logger"
+	"github.com/julianlee107/user/handler"
+	pb "github.com/julianlee107/user/proto/user/pb/user"
 )
 
 func main() {
 	// Create service
-	srv := service.New(
-		service.Name("user"),
-		service.Version("latest"),
+	srv := micro.NewService(
+		micro.Name("user"),
+		micro.Version("latest"),
 	)
 
 	// Register handler
