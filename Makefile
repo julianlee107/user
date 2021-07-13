@@ -9,15 +9,15 @@ init:
 
 .PHONY: api
 api:
-	protoc --openapi_out=. --proto_path=. proto/user.proto
+	protoc --openapi_out=. --proto_path=. proto/user/user.proto
 
 .PHONY: proto
 proto:
-	protoc --proto_path=. --micro_out=. --go_out=:. proto/user.proto
+	protoc --proto_path=. --micro_out=. --go_out=:. proto/user/user.proto
 	
 .PHONY: build
 build:
-	go build -o user *.go
+	CGO_ENABLE=0 GOOS=linux GOARCH=amd64 go build -o user *.go
 
 .PHONY: test
 test:
@@ -26,3 +26,6 @@ test:
 .PHONY: docker
 docker:
 	docker build . -t user:latest
+
+.PHONY: all
+all: init api proto build docker

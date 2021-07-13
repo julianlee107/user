@@ -4,8 +4,13 @@ go 1.15
 
 require (
 	github.com/asim/go-micro/v3 v3.5.2
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/jinzhu/gorm v1.9.16
-	google.golang.org/protobuf v1.26.0
+	github.com/micro/micro/v3 v3.3.0 // indirect
+	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
+	google.golang.org/protobuf v1.27.1
+	gorm.io/driver/mysql v1.1.1 // indirect
+	gorm.io/gorm v1.21.11 // indirect
 )
 
 // This can be removed once etcd becomes go gettable, version 3.4 and 3.5 is not,

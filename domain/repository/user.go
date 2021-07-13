@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/jinzhu/gorm"
 	"github.com/julianlee107/user/domain/model"
+	"gorm.io/gorm"
 )
 
 type IUserRepository interface {
@@ -28,7 +28,7 @@ func NewUserRepository(db *gorm.DB) IUserRepository {
 
 // InitTable 创建表格
 func (u *UserRepository) InitTable() error {
-	return u.mysqlDB.CreateTable(&model.User{}).Error
+	return u.mysqlDB.Migrator().CreateTable(&model.User{})
 }
 
 // FindUserByName 根据名称查找
@@ -55,7 +55,7 @@ func (u *UserRepository) DeleteUserByID(id int64) error {
 
 // UpdateUser 更新用户
 func (u *UserRepository) UpdateUser(user *model.User) error {
-	return u.mysqlDB.Model(user).Update(&user).Error
+	return u.mysqlDB.Model(user).Updates(&user).Error
 }
 
 func (u *UserRepository) FindAll() ([]model.User, error) {
